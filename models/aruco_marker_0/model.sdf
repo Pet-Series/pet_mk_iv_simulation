@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sdf version="1.6">
+  <model name="aruco_marker_0">
+    <pose frame="">0 0 0 0 0 0</pose>
+    <link name="aruco_marker_0-link">
+      <pose frame="">0 0 0 0 0 0</pose>
+
+      <visual name="visual_frontside">
+        <geometry>
+          <box>
+            <size>0.197 0.197 1e-5</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://aruco_marker_0/materials/scripts</uri>
+            <uri>model://aruco_marker_0/materials/textures</uri>
+            <name>aruco_marker_0-material</name>
+          </script>
+        </material>
+        <pose frame="">0 0 0.001 0 0 0</pose>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
+      </visual>
+
+      <visual name="visual_backside">
+        <pose frame="">0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.197 0.197 1e-5</size>
+          </box>
+        </geometry>
+        <material>
+          <script>Gazebo/Grey</script>
+        </material>
+      </visual>
+
+      <collision name="collision">
+        <pose frame="">0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.197 0.197 2e-5</size>
+          </box>
+        </geometry>
+      </collision>
+      
+    </link>
+    <static>1</static>
+    <allow_auto_disable>1</allow_auto_disable>
+  </model>
+</sdf>

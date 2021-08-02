@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+    <model name='cube'>
+      <static>true</static>
+      <pose>0 0 0 0 0 0</pose>
+      <link name='link'>
+
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+           <mesh>
+              <uri>model://cube/mesh/cube.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>         
+        </visual>
+
+        <collision name='collision'>
+          <geometry>
+           <mesh>
+              <uri>model://cube/mesh/cube.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+    </model>
+</sdf>
