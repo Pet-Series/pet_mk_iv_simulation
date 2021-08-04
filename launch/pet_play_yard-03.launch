@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   \licens       Software License Agreement (MIT)
-  \file         <workspace>/src/rover_gazebo/launch/gazebo_world.launch
+  \file         <workspace>/src/pet_mk_iv_simulation/launch/pet_play_yard-03.launch
   \authors      stefan.kull@gmail.com (Github ID 'SeniorKullken')
-  \repository   https://github.com/kullken/Pet-Mk-IV
-  \repository   https://github.com/kullken/pet_mcu_base
+  \repository   https://github.com/Pet-Series
+  \repository   https://github.com/Pet-Series/pet_mk_iv_simulation
   \copyright    
-  \description  Gazebo launch file that spawn(inserts) Pet Mark IV into a simple world(play yard) from realrobotlab.
+  \description  Gazebo launch file that spawn(inserts) Pet Mark IV into a simple world(play yard).
   ____________________________________________________________________________
   \usage
-    $ roslaunch rover_gazebo gazebo_world.launch
+    $ roslaunch pet_mk_iv_simulation pet_play_yard-03.launch
   ____________________________________________________________________________
   \todo "[ WARN] [1625328237.452135370] [/robot_state_publisher]: The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
   
