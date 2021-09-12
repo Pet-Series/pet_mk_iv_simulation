@@ -37,6 +37,8 @@
   
   <!--
     Parse/compile the world/context Description *.world.xacro => *.world
+    (Reason is that I would like to definne my .world files with help of xacro package
+     This is more of a hack solution -  Due to that I can not find any other/better way to use xacro based .world files...)
   -->
   <node name="xacro" pkg="xacro" type="xacro" args="$(find pet_mk_iv_simulation)/worlds/$(arg world).xacro -o $(find pet_mk_iv_simulation)/worlds/$(arg world)" />
   
@@ -79,16 +81,16 @@
     (Reason is that Gazebo/Virtual vs. Real/Physical robot has different type of topics)
   -->
   <node name="line_sensor_left_converter" pkg="pet_mk_iv_simulation" type="line_sensor_gazebo_converter.py"> 
-    <remap from="camera"      to="/line_sensors/left/image_raw" />
-    <remap from="line_sensor" to="/line_sensors/left" />
+    <remap from="camera"      to="/line_sensor/left/image_raw" />
+    <remap from="line_sensor" to="/line_sensor/left" />
   </node>
   <node name="line_sensor_mid_converter" pkg="pet_mk_iv_simulation" type="line_sensor_gazebo_converter.py"> 
-    <remap from="camera"      to="/line_sensors/mid/image_raw" />
-    <remap from="line_sensor" to="/line_sensors/mid" />
+    <remap from="camera"      to="/line_sensor/mid/image_raw" />
+    <remap from="line_sensor" to="/line_sensor/middle" />
   </node>
   <node name="line_sensor_right_converter" pkg="pet_mk_iv_simulation" type="line_sensor_gazebo_converter.py"> 
-    <remap from="camera"      to="/line_sensors/right/image_raw" />
-    <remap from="line_sensor" to="/line_sensors/right" />
+    <remap from="camera"      to="/line_sensor/right/image_raw" />
+    <remap from="line_sensor" to="/line_sensor/right" />
   </node>
 
 </launch>

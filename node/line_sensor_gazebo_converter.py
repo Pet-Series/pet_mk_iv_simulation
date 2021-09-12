@@ -5,16 +5,16 @@
 # -----Prerequisite------------------------------
 # <launch>
 #  <node name="line_sensor_left_converter" pkg="pet_mk_iv_simulation" type="line_sensor_gazebo_converter.py"> 
-#    <remap from="camera"      to="/line_sensors/left/image_raw" />
-#    <remap from="line_sensor" to="/line_sensors/left" />
+#    <remap from="camera"      to="/line_sensor/left/image_raw" />
+#    <remap from="line_sensor" to="/line_sensor/left" />
 #  </node>
 #  <node name="line_sensor_mid_converter" pkg="pet_mk_iv_simulation" type="line_sensor_gazebo_converter.py"> 
-#    <remap from="camera"      to="/line_sensors/mid/image_raw" />
-#    <remap from="line_sensor" to="/line_sensors/mid" />
+#    <remap from="camera"      to="/line_sensor/mid/image_raw" />
+#    <remap from="line_sensor" to="/line_sensor/middle" />
 #  </node>
 #  <node name="line_sensor_right_converter" pkg="pet_mk_iv_simulation" type="line_sensor_gazebo_converter.py"> 
-#    <remap from="camera"      to="/line_sensors/right/image_raw" />
-#    <remap  from="line_sensor" to="/line_sensors/right" />
+#    <remap from="camera"      to="/line_sensor/right/image_raw" />
+#    <remap from="line_sensor" to="/line_sensor/right" />
 #  </node>
 # </launch>
 import rospy
