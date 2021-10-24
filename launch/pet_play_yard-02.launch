@@ -77,57 +77,27 @@
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/> 
 
   <!--
-    Lanch node that Converts Gazebo Camera/Image topics => Bolean line sensor topics
+    Adapter that convert Gazebo Camera/Image topics to LineDetection<"DARK"/"LIGHT">.
     (Reason is that Gazebo/Virtual vs. Real/Physical robot has different type of topics)
   -->
-  <node name="line_sensor_left_converter" pkg="pet_mk_iv_simulation" type="line_sensor_gazebo_converter.py"> 
+  <node name="line_sensor_left_converter" pkg="pet_mk_iv_simulation" type="gazebo_line_sensor_adapter.py"> 
     <remap from="camera"      to="/line_sensor/left/image_raw" />
     <remap from="line_sensor" to="/line_sensor/left" />
   </node>
-  <node name="line_sensor_mid_converter" pkg="pet_mk_iv_simulation" type="line_sensor_gazebo_converter.py"> 
+  <node name="line_sensor_mid_converter" pkg="pet_mk_iv_simulation" type="gazebo_line_sensor_adapter.py"> 
     <remap from="camera"      to="/line_sensor/mid/image_raw" />
     <remap from="line_sensor" to="/line_sensor/middle" />
   </node>
-  <node name="line_sensor_right_converter" pkg="pet_mk_iv_simulation" type="line_sensor_gazebo_converter.py"> 
+  <node name="line_sensor_right_converter" pkg="pet_mk_iv_simulation" type="gazebo_line_sensor_adapter.py"> 
     <remap from="camera"      to="/line_sensor/right/image_raw" />
     <remap from="line_sensor" to="/line_sensor/right" />
   </node>
 
-<!--
-  # Launch sequence:
-  # 1. $ roslaunch pet_mk_iv_simulation pet_play_yard-02.launch
-  # 2. $ rosrun pet_mk_iv_mission_control test_line_detect_gazebo.py 
-  # 3. $ rosrun topic_tools transform /cmd_vel /gazebo/cmd_vel geometry_msgs/Twist 'm.twist'
-  #      This command must be be started AFTER someone publish /cmd_vel (TwistStamped)
-
-  # Corresponding cmd line:
-  # $ rostopic pub /cmd_vel geometry_msgs/TwistStamped "header:
-        seq: 0
-        stamp:
-          secs: 0
-          nsecs: 0
-        frame_id: ''
-        twist:
-          linear:
-            x: 0.0
-            y: 0.0
-            z: 0.0
-          angular:
-            x: 0.0
-            y: 0.0
-            z: 0.0" 
--->
-<!--
-  <node pkg="Dummy Publish cmd_vel" type="rostopic" name="rostopic" 
-        args="pub /cmd_vel geometry_msgs/TwistStamped "header: seq:0 stamp: secs: 0 nsecs: 0 frame_id: '' twist: linear: x: 0 y: 0 z: 0 angular: x: 0 y: 0 z: 0" 
-  />
--->  
   <!--
+    Adapter that convert Pet-series /cmd_vel TwistStamped => Gazebo /cmd_vel (twist)
     Gazebo using     /cmd_vel with msgType = Twist
     Pet-series using /cmd_vel with msgType = TwistStamped
-    Corresponding cmd line: 
-    $ rosrun topic_tools transform /cmd_vel /gazebo/cmd_vel geometry_msgs/Twist 'm.twist'
   -->
-  <node name="TwistStamped_2_Twist" type="transform" pkg="topic_tools" args="/cmd_vel /gazebo/cmd_vel geometry_msgs/Twist 'm.twist'" />
+ <node name="gazebo_cmd_vel_adapter_node" pkg="pet_mk_iv_simulation" type="gazebo_cmd_vel_adapter.py" />
 
 </launch>
