@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  \licens       Software License Agreement (MIT)
+  \file         <workspace>/src/pet_mk_iv_simulation/launch/testrun_01_avoid-wall-line-stop.launch
+  \authors      stefan.kull@gmail.com (Github ID 'SeniorKullken')
+  \repository   https://github.com/Pet-Series
+  \repository   https://github.com/Pet-Series/pet_mk_iv_simulation
+  \copyright    
+-->
+<launch>
+    <include file="$(find pet_mk_iv_simulation)/launch/pet_play_yard-01.launch">
+        <arg name="paused"    value="false"/>
+        <arg name="verbose"   value="true"/> 
+    </include>
+
+    <include file="$(find pet_mk_iv_simulation)/launch/spawn_pet_mk_iv.launch">
+        <arg name="spawn_x"   value="-0.300"/> 
+        <arg name="spawn_y"   value="0.350"/>   
+        <arg name="spawn_z"   value="0.001"/>
+        <arg name="spawn_yaw" value="0.0"/>   
+    </include>
+
+    <node name="Follow_the_line_node" pkg="pet_mk_iv_mission_control" type="testrun_01_avoid-wall-line-stop.py" />
+</launch>
