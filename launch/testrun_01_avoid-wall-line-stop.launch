@@ -3,14 +3,23 @@
   \licens       Software License Agreement (MIT)
   \file         <workspace>/src/pet_mk_iv_simulation/launch/testrun_01_avoid-wall-line-stop.launch
   \authors      stefan.kull@gmail.com (Github ID 'SeniorKullken')
-  \repository   https://github.com/Pet-Series
+  \organisation https://github.com/Pet-Series
+  \repository   https://github.com/Pet-Series/Pet-Mk-IV
   \repository   https://github.com/Pet-Series/pet_mk_iv_simulation
-  \copyright    
+  \copyright 
+  \description  Top node Gazebo launch file 
+
+  \TODO: sort out my logging mess <- Use rqt... Not the console as output for logging!
 -->
 <launch>
+    <param name="/use_sim_time" value="true" />
+    <param name="/debug"        value="true" />
+    <param name="/verbose"      value="true" />
+
     <include file="$(find pet_mk_iv_simulation)/launch/pet_play_yard-01.launch">
-        <arg name="paused"    value="false"/>
-        <arg name="verbose"   value="true"/> 
+        <arg name="paused"       value="true"/>
+        <arg name="debug"        value="true" />
+        <arg name="verbose"      value="true" />
     </include>
 
     <include file="$(find pet_mk_iv_simulation)/launch/spawn_pet_mk_iv.launch">
@@ -20,5 +29,8 @@
         <arg name="spawn_yaw" value="0.0"/>   
     </include>
 
-    <node name="Follow_the_line_node" pkg="pet_mk_iv_mission_control" type="testrun_01_avoid-wall-line-stop.py" />
+    <node name="Follow_the_line_node" pkg="pet_mk_iv_mission_control" type="testrun_01_avoid-wall-line-stop.py" >
+        <param name="debug"        value="true" />
+        <param name="verbose"      value="true" />
+    </node>
 </launch>
