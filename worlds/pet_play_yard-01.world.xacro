@@ -1,3 +1,4 @@
+<?xml version="1.0" ?>
 <sdf version='1.6'>
   <!--
     ".xacro" => SDF/URDF-macrofilee that need to be parsed.
@@ -6,7 +7,7 @@
       $ rosrun xacro xacro src/Pet-Mk-IV/pet_mk_iv_simulation/worlds/pet_play_yard.world.xacro >  src/Pet-Mk-IV/pet_mk_iv_simulation/worlds/pet_play_yard.world 
 
     Example - Via launch file:
-      <node name="xacro" pkg="xacro" type="xacro" args="$(find pet_mk_iv_simulation)/worlds/$(arg world).xacro -o $(find pet_mk_iv_simulation)/worlds/$(arg world)" />
+     <node name="xacro" pkg="xacro" type="xacro" args="$(find pet_mk_iv_simulation)/worlds/[dollar][***Dollar***].xacro -o "$(find pet_mk_iv_simulation)/worlds/[dollar][***Dollar***]" />  />
 
     http://wiki.ros.org/xacro 
   -->
@@ -366,5 +367,6 @@
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
+
   </world>
 </sdf>
