@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  \licens       Software License Agreement (MIT)
+  \file         <workspace>/src/pet_mk_iv_simulation/launch/spawn_pet_mk_iv.launch
+  \authors      stefan.kull@gmail.com (Github ID 'SeniorKullken')
+  \repository   https://github.com/Pet-Series
+  \repository   https://github.com/Pet-Series/pet_mk_iv_simulation
+  \copyright    
+  \description  Gazebo launch file that spawn(inserts) Pet Mark IV into an existing Gazebo-world.
+  ____________________________________________________________________________
+  \usage
+    $ roslaunch pet_mk_iv_simulation pet_play_yard-01.launch
+  ____________________________________________________________________________
+  \TODO "[ WARN] [1625328237.452135370] [/robot_state_publisher]: The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+  \TODO "xacro.py is deprecated; please use xacro instead"
+  
+  \reference  http://gazebosim.org/tutorials?tut=ros_roslaunch
+-->
+<launch>
+  
+  <!-- 
+    These are the arguments you can pass to this launch file...
+    For example: 
+      paused:=true 
+      spawn_x:=-0.27
+  --> 
+  <arg name="spawn_x"    default="-0.200"/>  <!-- Default URDF robot coordinate -->
+  <arg name="spawn_y"    default="0.350"/>   <!-- Default URDF robot coordinate -->
+  <arg name="spawn_z"    default="0.001"/>   <!-- Default URDF robot coordinate -->
+  <arg name="spawn_roll"    default="0.0"/>  <!-- Model rotation around X-axia "tilt left/right"       -->
+  <arg name="spawn_pitch"   default="0.0"/>  <!-- Model rotation around Y-axia "tilt forward/backward" -->
+  <arg name="spawn_yaw"     default="0.0"/>  <!-- Model rotation around Z-axis "turn lefft/right"      -->
+  <!--
+    Parse/compile the Robot Description *urdf.xacro => *.urdf
+    URDF xml robot description loaded into the ROS Parameter Server, converting the xacro into a proper urdf file
+  -->
+  <param name="robot_description" 
+         command="$(find xacro)/xacro.py '$(find pet_mk_iv_description)/urdf/pet_mk_iv.urdf.xacro'"/> 
+
+  <!-- load the controllers -->
+  <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  <!-- push robot_description to factory and spawn/insert/launch robot in gazebo -->
+  <node  name="spawn_pet_robot" pkg="gazebo_ros" type="spawn_model" output="screen"
+         args="-urdf -param robot_description  -model my_Pet_Robot
+                    -x $(arg spawn_x) -y $(arg spawn_y) -z $(arg spawn_z)
+                    -R $(arg spawn_roll) -P $(arg spawn_pitch) -Y $(arg spawn_yaw)"/>
+
+  <!-- Convert joint states to TF transforms for rviz, etc -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="False"/>
+  </node> 
+  
+  <!-- Combine joint values -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/> 
+
+  <!--
+    Adapter that convert Gazebo Camera/Image topics to LineDetection<"DARK"/"LIGHT">.
+    (Reason is that Gazebo/Virtual vs. Real/Physical robot has different type of topics)
+  -->
+  <node name="line_sensor_left_converter" pkg="pet_mk_iv_simulation" type="gazebo_line_sensor_adapter.py"> 
+    <remap from="camera"      to="/line_sensor/left/image_raw" />
+    <remap from="line_sensor" to="/line_sensor/left" />
+  </node>
+  <node name="line_sensor_mid_converter" pkg="pet_mk_iv_simulation" type="gazebo_line_sensor_adapter.py"> 
+    <remap from="camera"      to="/line_sensor/mid/image_raw" />
+    <remap from="line_sensor" to="/line_sensor/middle" />
+  </node>
+  <node name="line_sensor_right_converter" pkg="pet_mk_iv_simulation" type="gazebo_line_sensor_adapter.py"> 
+    <remap from="camera"      to="/line_sensor/right/image_raw" />
+    <remap from="line_sensor" to="/line_sensor/right" />
+  </node>
+
+  <!--
+    Adapter that convert Pet-series /cmd_vel TwistStamped => Gazebo /cmd_vel (twist)
+    Gazebo using     /cmd_vel with msgType = Twist
+    Pet-series using /cmd_vel with msgType = TwistStamped
+  -->
+  <node name="gazebo_cmd_vel_adapter_node" pkg="pet_mk_iv_simulation" type="gazebo_cmd_vel_adapter.py" />
+
+</launch>

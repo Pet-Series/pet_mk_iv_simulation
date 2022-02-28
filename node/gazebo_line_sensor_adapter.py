@@ -1,18 +1,18 @@
 #!/usr/bin/env python
-#  Convert Gazebo Camera/Image topics to bolean line sensors.
+#  Adapter that convert Gazebo Camera/Image topics to LineDetection<"DARK"/"LIGHT">.
 #  Reason is that Gazebo/Virtual vs. Real/Physical robot has different type of topics.
 #
 # -----Prerequisite------------------------------
 # <launch>
-#  <node name="line_sensor_left_converter" pkg="pet_mk_iv_simulation" type="line_sensor_gazebo_converter.py"> 
+#  <node name="line_sensor_left_converter" pkg="pet_mk_iv_simulation" type="gazebo_line_sensor_adapter.py"> 
 #    <remap from="camera"      to="/line_sensor/left/image_raw" />
 #    <remap from="line_sensor" to="/line_sensor/left" />
 #  </node>
-#  <node name="line_sensor_mid_converter" pkg="pet_mk_iv_simulation" type="line_sensor_gazebo_converter.py"> 
+#  <node name="line_sensor_mid_converter" pkg="pet_mk_iv_simulation" type="gazebo_line_sensor_adapter.py"> 
 #    <remap from="camera"      to="/line_sensor/mid/image_raw" />
 #    <remap from="line_sensor" to="/line_sensor/middle" />
 #  </node>
-#  <node name="line_sensor_right_converter" pkg="pet_mk_iv_simulation" type="line_sensor_gazebo_converter.py"> 
+#  <node name="line_sensor_right_converter" pkg="pet_mk_iv_simulation" type="gazebo_line_sensor_adapter.py"> 
 #    <remap from="camera"      to="/line_sensor/right/image_raw" />
 #    <remap from="line_sensor" to="/line_sensor/right" />
 #  </node>
