@@ -8,7 +8,10 @@
   \repository   https://github.com/Pet-Series/pet_mk_iv_simulation
   \copyright 
   \description  Top node Gazebo launch file 
-
+    ____________________________________________________________________________
+  \usage
+    $ roslaunch pet_mk_iv_simulation testrun_01_avoid-wall-line-stop.launch
+    ____________________________________________________________________________  
   \TODO: sort out my logging mess <- Use rqt... Not the console as output for logging!
 -->
 <launch>
@@ -17,7 +20,7 @@
     <param name="/debug"        value="false" />  <!-- Does this affect anything? -->
     <param name="/verbose"      value="false" />  <!-- Does this affect anything? -->
 
-    <arg name="paused"       default="true"/>
+    <arg name="paused"       default="true"/>  <!-- -->
     <arg name="debug"        default="false"/>
     <arg name="verbose"      default="false"/> 
 

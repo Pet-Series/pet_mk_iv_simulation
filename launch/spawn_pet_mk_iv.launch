@@ -9,7 +9,7 @@
   \description  Gazebo launch file that spawn(inserts) Pet Mark IV into an existing Gazebo-world.
   ____________________________________________________________________________
   \usage
-    $ roslaunch pet_mk_iv_simulation pet_play_yard-01.launch
+    $ roslaunch pet_mk_iv_simulation spawn_pet_mk_iv.launch
   ____________________________________________________________________________
   \TODO "[ WARN] [1625328237.452135370] [/robot_state_publisher]: The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
   \TODO "xacro.py is deprecated; please use xacro instead"
@@ -62,7 +62,7 @@
     <remap from="line_sensor" to="/line_sensor/left" />
   </node>
   <node name="line_sensor_mid_converter" pkg="pet_mk_iv_simulation" type="gazebo_line_sensor_adapter.py"> 
-    <remap from="camera"      to="/line_sensor/mid/image_raw" />
+    <remap from="camera"      to="/line_sensor/middle/image_raw" />
     <remap from="line_sensor" to="/line_sensor/middle" />
   </node>
   <node name="line_sensor_right_converter" pkg="pet_mk_iv_simulation" type="gazebo_line_sensor_adapter.py"> 

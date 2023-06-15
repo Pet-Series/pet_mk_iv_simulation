@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   \licens       Software License Agreement (MIT)
-  \file         <workspace>/src/pet_mk_iv_simulation/launch/testrun_03_follow-line.launch
+  \file         <workspace>/src/pet_mk_iv_simulation/launch/testrun_00_spawn_pet_and_play_yard.launch
   \authors      stefan.kull@gmail.com (Github ID 'SeniorKullken')
   \organisation https://github.com/Pet-Series
   \repository   https://github.com/Pet-Series/Pet-Mk-IV
   \repository   https://github.com/Pet-Series/pet_mk_iv_simulation
-  \copyright   
-  \description  Top node Gazebo launch file
+  \copyright 
+  \description  Spawn the robot and play yard world.
     ____________________________________________________________________________
   \usage
-    $ roslaunch pet_mk_iv_simulation testrun_03_follow-line.launch
+    $ roslaunch pet_mk_iv_simulation testrun_00_spawn_pet_and_play_yard.launch
     ____________________________________________________________________________  
-
-  \TODO: sort out my logging mess <- Use rqt... Not the console as output for logging! 
+  \TODO: sort out my logging mess <- Use rqt... Not the console as output for logging!
 -->
 <launch>
     
@@ -21,25 +20,28 @@
     <param name="/debug"        value="false" />  <!-- Does this affect anything? -->
     <param name="/verbose"      value="false" />  <!-- Does this affect anything? -->
 
-    <arg name="paused"       default="true"/>
+    <arg name="paused"       default="false"/>  <!-- -->
     <arg name="debug"        default="false"/>
-    <arg name="verbose"      default="true"/> 
+    <arg name="verbose"      default="false"/> 
 
     <include file="$(find pet_mk_iv_simulation)/launch/pet_play_yard-01.launch">
         <arg name="paused"     value="$(arg paused)"/>
         <arg name="debug"      value="$(arg debug)" />
-        <arg name="verbose"    value="$(arg verbose)"/>
+        <arg name="verbose"    value="$(arg verbose)" />
     </include>
 
     <include file="$(find pet_mk_iv_simulation)/launch/spawn_pet_mk_iv.launch">
-        <arg name="spawn_x"   value="-0.680"/> 
-        <arg name="spawn_y"   value="0.170"/>   
-        <arg name="spawn_z"   value="0.008"/> 
-        <arg name="spawn_yaw" value="1.35"/>    
+        <arg name="spawn_x"   value="-0.300"/> 
+        <arg name="spawn_y"   value="0.350"/>   
+        <arg name="spawn_z"   value="0.001"/>
+        <arg name="spawn_yaw" value="0.0"/>   
     </include>
 
-    <node name="Follow_the_line_PlayYard01" pkg="pet_mk_iv_mission_control" type="testrun_03_follow-line.py">
+ <!--    <node name="Avoid_obstacle_PlayYard01" pkg="pet_mk_iv_mission_control" type="testrun_01_avoid-wall-line-stop.py" >
+ -->
     <!--    <arg name="debug"        value="$(arg debug)"/>    -->
     <!--    <arg name="verbose"      value="$(arg verbose)"/>  -->
-     </node>
+<!--
+    </node>
+ -->
 </launch>
