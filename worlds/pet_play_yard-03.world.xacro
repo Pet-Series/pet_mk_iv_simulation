@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <sdf version='1.6'>
   <!--
-    ".xacro" => SDF/URDF-macrofilee that need to be parsed.
+    ".xacro" => SDF/URDF-macrofilee that need to be parsed by xacro.
 
-    Example - Via shell/command line:
-      $ rosrun xacro xacro src/Pet-Mk-IV/pet_mk_iv_simulation/worlds/pet_play_yard.world.xacro >  src/Pet-Mk-IV/pet_mk_iv_simulation/worlds/pet_play_yard.world 
+    Example - Via shell/command line (ROS1-Melodic):
+      $ rosrun xacro xacro src/Pet-Mk-IV/pet_mk_iv_simulation/worlds/pet_play_yard-03.world.xacro >  src/Pet-Mk-IV/pet_mk_iv_simulation/worlds/pet_play_yard-03.world 
 
     Example - Via launch file:
       <node name="xacro" pkg="xacro" type="xacro" args="$(find pet_mk_iv_simulation)/worlds/[***Dollar***].xacro -o $(find pet_mk_iv_simulation)/worlds/[***Dollar***]" />
@@ -70,12 +70,14 @@
     <!--
       Add Construction Cone
     -->
+    <!--
       <include>
         <uri>model://construction_cone</uri>
         <name>construction_cone</name>
         <pose frame=''>0.10 -0.40 0.00 0 -0 0</pose>
         <scale>0.2 0.2 0.2</scale>
      </include>
+    -->
     
     <!--
       Add fences/walls and visual floor
