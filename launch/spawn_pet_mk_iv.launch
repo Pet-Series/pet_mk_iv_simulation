@@ -12,7 +12,6 @@
     $ roslaunch pet_mk_iv_simulation spawn_pet_mk_iv.launch
   ____________________________________________________________________________
   \TODO "[ WARN] [1625328237.452135370] [/robot_state_publisher]: The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
-  \TODO "xacro.py is deprecated; please use xacro instead"
   
   \reference  http://gazebosim.org/tutorials?tut=ros_roslaunch
 -->
@@ -35,7 +34,7 @@
     URDF xml robot description loaded into the ROS Parameter Server, converting the xacro into a proper urdf file
   -->
   <param name="robot_description" 
-         command="$(find xacro)/xacro.py '$(find pet_mk_iv_description)/urdf/pet_mk_iv.urdf.xacro'"/> 
+         command="xacro '$(find pet_mk_iv_description)/urdf/pet_mk_iv.urdf.xacro'"/> 
 
   <!-- load the controllers -->
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->

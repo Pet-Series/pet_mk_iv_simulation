@@ -51,6 +51,8 @@ Set up for simuation in Gazebo
   ~/ros_ws$ catkin_make  (vs. $ catkin build  ??)
   ~/ros_ws$
   ```
+  Note: 'catkin_make' - Alternative instead of 'catkin build'
+  Note: 'catkin build' - A more flexible way of buildning ROS1/Noetic packages
   
 # Examples
 ## **Spawn Gazebo worlds** (Play yard #1)
