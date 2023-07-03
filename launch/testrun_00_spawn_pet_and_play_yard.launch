@@ -37,11 +37,4 @@
         <arg name="spawn_yaw" value="0.0"/>   
     </include>
 
- <!--    <node name="Avoid_obstacle_PlayYard01" pkg="pet_mk_iv_mission_control" type="testrun_01_avoid-wall-line-stop.py" >
- -->
-    <!--    <arg name="debug"        value="$(arg debug)"/>    -->
-    <!--    <arg name="verbose"      value="$(arg verbose)"/>  -->
-<!--
-    </node>
- -->
 </launch>

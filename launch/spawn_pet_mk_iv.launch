@@ -11,8 +11,6 @@
   \usage
     $ roslaunch pet_mk_iv_simulation spawn_pet_mk_iv.launch
   ____________________________________________________________________________
-  \TODO "[ WARN] [1625328237.452135370] [/robot_state_publisher]: The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
-  
   \reference  http://gazebosim.org/tutorials?tut=ros_roslaunch
 -->
 <launch>
@@ -50,7 +48,10 @@
   </node> 
   
   <!-- Combine joint values -->
+<!-- Melodic -> Noetic
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/> 
+-->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/> 
 
   <!--
     Adapter that convert Gazebo Camera/Image topics to LineDetection<"DARK"/"LIGHT">.
