@@ -24,32 +24,35 @@
       verbose_x:="false"
   --> 
 
-  <arg name="world"         default="pet_play_yard-03.world"/> 
-  <arg name="paused"        default="false"/>
-  <arg name="use_sim_time"  default="true"/>
-  <arg name="gui"           default="true"/>
-  <arg name="headless"      default="false"/>
-  <arg name="debug"         default="false"/>
-  <arg name="verbose"       default="false"/>  
+  <arg name="world"        default="pet_play_yard-03.world"/> 
+  <arg name="paused"       default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui"          default="true"/>
+  <arg name="headless"     default="false"/>
+  <arg name="debug"        default="false"/>
+  <arg name="verbose"      default="true"/>
   
 <!--
     Parse/compile the world/context Description *.world.xacro => *.world
     (Reason is that I would like to definne my .world files with help of xacro package
      This is more of a hack solution -  Due to that I can not find any other/better way to use xacro based .world files...)
   -->
-  <node name="xacro" pkg="xacro" type="xacro" args="$(find pet_mk_iv_simulation)/worlds/$(arg world).xacro -o $(find pet_mk_iv_simulation)/worlds/$(arg world)" />
+    <node name="xacro" pkg="xacro" type="xacro" args="$(find pet_mk_iv_simulation)/worlds/$(arg world).xacro -o $(find pet_mk_iv_simulation)/worlds/$(arg world)" >
+        <param name="debug"    value="$(arg debug)"/>
+        <param name="verbose"  value="$(arg verbose)"/>
+  </node>
   
   <!--
     Load the world/context Description
   -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name"    value="$(find pet_mk_iv_simulation)/worlds/$(arg world)"/>
-    <arg name="paused"        value="$(arg paused)"/>
-    <arg name="use_sim_time"  value="$(arg use_sim_time)"/>
-    <arg name="gui"           value="$(arg gui)"/>
-    <arg name="headless"      value="$(arg headless)"/>
-    <arg name="debug"         value="$(arg debug)"/>
-    <arg name="verbose"       value="$(arg verbose)"/>
+    <arg name="world_name"   value="$(find pet_mk_iv_simulation)/worlds/$(arg world)"/>
+    <arg name="paused"       value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui"          value="$(arg gui)"/>
+    <arg name="headless"     value="$(arg headless)"/>
+    <arg name="debug"        value="$(arg debug)"/>
+    <arg name="verbose"      value="$(arg verbose)"/>
   </include>
 
 </launch>
