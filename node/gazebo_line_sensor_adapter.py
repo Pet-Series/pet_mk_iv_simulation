@@ -37,7 +37,7 @@ GRAYSCALE_THRESHOLD = 50
 def callback(image):
     sum = 0
     for pixel in image.data:
-        sum += int(pixel.encode('hex'), base=16)
+        sum += pixel
     mean = sum / len(image.data)
 
     line_msg = LineDetection()
