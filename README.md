@@ -9,7 +9,8 @@ Containing a Pet-Nk.IV ROS1-package / data for Gazebo & RViz
 
 The following repositoris need to spawn the rebot and run missions scripts.
 * https://github.com/Pet-Series/Pet-Mk-IV.git 
-* https://github.com/Pet-Series/pet_mk_iv_simulation.git &ensp;`<-This repository`
+* https://github.com/Pet-Series/pet_mk_iv_simulation.git `<-This repository`
+* https://github.com/Pet-Series/pet_docker/tree/README.md-stuff/pet-mk-iv-simulation `<-All above in a Docker🐳Image`
 
 ## **What is this folder for?** ##
 ROS package neccesary to be able to run robot simulation of Pet-Mk.IV, using Gazebo.</br>
@@ -51,7 +52,7 @@ Set up for simuation in Gazebo
   ~/ros_ws$ catkin_make  (vs. $ catkin build  ??)
   ~/ros_ws$
   ```
-  Note: 'catkin_make' - Alternative instead of 'catkin build'
+  Note: 'catkin_make' - Alternative instead of 'catkin build'</br>
   Note: 'catkin build' - A more flexible way of buildning ROS1/Noetic packages
   
 # Examples
